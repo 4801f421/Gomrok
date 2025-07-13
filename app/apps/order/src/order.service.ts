@@ -19,6 +19,7 @@ import ListDto from '@app/contracts/models/dtos/listDto';
 import PanelUserDto from '@app/contracts/models/dtos/panel/panelService/panelUserDto';
 import PanelModifyUserDto from '@app/contracts/models/dtos/panel/panelService/panelModifyUserDto';
 import RenewOrderDto from '@app/contracts/models/dtos/order/renewOrderDto';
+import AdminOrderDto from '@app/contracts/models/dtos/order/adminOrderDto';
 
 @Injectable()
 export class OrderService {
@@ -241,4 +242,47 @@ export class OrderService {
 
     return revokeSubResult
   }
+
+  async getAll({ startIndex, limit, order }: FilterDto): Promise<DataResultDto<ListDto<AdminOrderDto[]>>> {
+        const query = this.orderModel.find({})
+            .populate('user', 'id username firstName') // اطلاعات کاربر را واکشی می‌کند
+            .populate('product', 'id name'); // اطلاعات محصول را واکشی می‌کند
+
+        const totalCount = await this.orderModel.countDocuments({});
+
+        const orders = await query.skip(startIndex).limit(limit).sort({ createdAt: order == 1 ? 1 : -1 });
+
+        const mappedList = orders.map(o => {
+            const user = o.user as any; // Type assertion to access populated fields
+            const product = o.product as any; // Type assertion
+
+            return {
+                id: String(o._id),
+                name: o.name,
+                payed: o.payed,
+                price: o.price,
+                finalPrice: o.finalPrice,
+                product: {
+                    id: String(product?._id),
+                    name: product?.name,
+                },
+                user: {
+                    id: String(user?._id),
+                    username: user?.username,
+                    firstName: user?.firstName
+                },
+                createdAt: o.get('createdAt')
+            };
+        });
+
+        return {
+            success: true,
+            message: Messages.ORDER.ORDER_LISTED_SUCCESSFULLY.message,
+            statusCode: Messages.ORDER.ORDER_LISTED_SUCCESSFULLY.code,
+            data: {
+                items: mappedList,
+                length: totalCount
+            }
+        };
+    }
 }

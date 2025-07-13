@@ -6,5 +6,6 @@ export const ORDER_PATTERNS = {
     RENEW: 'order.renew',
     MY_ORDERS: 'order.my_orders',
     GET_WITH_PANEL_USER: 'order.get_with_panel_user',
-    REVOKE_SUB: 'order.revoke_sub'
+    REVOKE_SUB: 'order.revoke_sub',
+    GET_ALL: 'order.get_all'
 }

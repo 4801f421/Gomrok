@@ -36,4 +36,9 @@ export class OrderService {
     async revokeSub(id: string, userId: string) {
         return await this.orderClient.send(ORDER_PATTERNS.REVOKE_SUB, { id: id, userId: userId })
     }
+
+        async getAll(filter: FilterDto) {
+        return await this.orderClient.send(ORDER_PATTERNS.GET_ALL, { filter: filter });
+    }
+
 }

@@ -1,9 +1,10 @@
 export const ORDER_PATTERNS = {
-    ADD: '/order',
-    GET: '/order/',
-    BUY: '/order/buy/',
-    RENEW: '/order/renew/',
-    MY_ORDERS: '/order/my_orders',
-    GET_WITH_PANEL_USER: '/order/get_with_panel_user/',
-    REVOKE_SUB:'/order/{id}/revoke_sub'
-}
+	ADD: "/order",
+	GET: "/order/",
+	BUY: "/order/buy/",
+	RENEW: "/order/renew/",
+	MY_ORDERS: "/order/my_orders",
+	GET_WITH_PANEL_USER: "/order/get_with_panel_user/",
+	REVOKE_SUB: "/order/{id}/revoke_sub",
+	GET_ALL: "/order/all",
+};

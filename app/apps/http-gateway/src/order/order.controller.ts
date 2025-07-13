@@ -4,6 +4,9 @@ import AddOrderDto from '@app/contracts/models/dtos/order/addOrderDto';
 import { JwtAuthGuard } from '@app/contracts/utils/jwt_token/guards/jwt.guard';
 import FilterDto from '@app/contracts/models/dtos/filterDto';
 import RenewOrderDto from '@app/contracts/models/dtos/order/renewOrderDto';
+import { RolesGuard } from '@app/contracts/utils/jwt_token/guards/roles.guard'; // <-- اضافه شود
+import { Roles } from '@app/contracts/utils/jwt_token/guards/roles.decorator'; // <-- اضافه شود
+
 
 @Controller('order')
 export class OrderController {
@@ -49,5 +52,12 @@ export class OrderController {
     @UseGuards(new JwtAuthGuard(['user']))
     async get(@Param('id') id: string, @Req() req) {
         return await this.orderService.get(id, req.user['sub'])
+    }
+
+    @Get('all')
+    @UseGuards(new JwtAuthGuard(), RolesGuard)
+    @Roles('admin')
+    async getAllOrders(@Query() filter: FilterDto) {
+        return await this.orderService.getAll(filter);
     }
 }

@@ -44,4 +44,10 @@ export class OrderController {
   async revokeSub(data: { id: string, userId: string }) {
     return await this.orderService.revokeSubscription(data.id, data.userId)
   }
+
+  @MessagePattern(ORDER_PATTERNS.GET_ALL)
+  async getAll(data: { filter: FilterDto }) {
+    return await this.orderService.getAll(data.filter);
+  }
+
 }
