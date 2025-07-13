@@ -55,8 +55,7 @@ export class OrderController {
     }
 
     @Get('all')
-    @UseGuards(new JwtAuthGuard(), RolesGuard)
-    @Roles('admin')
+    @UseGuards(new JwtAuthGuard(['admin']))
     async getAllOrders(@Query() filter: FilterDto) {
         return await this.orderService.getAll(filter);
     }
