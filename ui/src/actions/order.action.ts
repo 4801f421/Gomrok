@@ -18,8 +18,7 @@ export async function getAllOrders(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -39,8 +38,7 @@ export async function addOrder(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -59,8 +57,7 @@ export async function getOrder(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -80,8 +77,7 @@ export async function buyOrder(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -103,8 +99,7 @@ export async function renewOrder(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -125,8 +120,7 @@ export async function getMyOrders(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -145,8 +139,7 @@ export async function getOrderWithPanelUser(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
@@ -168,8 +161,7 @@ export async function revokeSub(data: any) {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				authorization:
-					"Bearer " + (await cookies()).get("token")?.value,
+				authorization: "Bearer " + (await cookies()).get("token")?.value,
 			},
 			validateStatus: () => true,
 		}
